@@ -35,3 +35,48 @@ rviz
 <img width="1008" height="535" alt="2026-09-28 15-46-16屏幕截图" src="https://github.com/user-attachments/assets/0a920473-294b-4e0d-ba33-63c09c1e00de" />
 <param name="base_global_planner" value="global_planner/GlobalPlanner" /> 默认使用迪杰斯特拉算法，而非A*，前者可找到最优路径
 <img width="1003" height="494" alt="2026-09-28 15-54-33屏幕截图" src="https://github.com/user-attachments/assets/c65dfad2-9f17-435d-9177-6442b0227c82" />
+54.ROS导航系统 | AMCL(自适应的蒙特卡洛定位算法) 定位算法  定位机器人在哪里
+在已知地图中进行定位的算法，他同时使用了里程计和激光雷达数据
+<img width="1063" height="739" alt="2026-09-28 16-21-37屏幕截图" src="https://github.com/user-attachments/assets/1891a86e-20c0-474a-a11f-96456bc92687" />
+amcl节点负责输出map到odom的tf，里程计负责输出odom到base_footprint的tf,这样rviz就能在地图上显示机器人的位置
+amcl节点切换本体和分身是在map到odom这段tf上产生跳跃突变来实现的所以在导航中能看到机器人一蹦一蹦的
+catkin_make
+roslaunch wpr_simulation wpb_stage_robocup.launch
+roslaunch nav_pkg nav.launch 
+rviz
+55ROS导航系统 | 代价地图 Costmap
+局部规划器主要是用来避障的
+把rviz显示设置保存成文件,在rviz里选择保存
+在nav.launch中调用    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find nav_pkg)/rviz/nav.rviz"/>
+56.ROS导航系统 | 代价地图的参数设置
+catkin_make
+roslaunch wpr_simulation wpb_stage_robocup.launch
+roslaunch nav_pkg nav.launch 
+顶部摄像头三维点云
+全局代价地图中
+如果想边建图边导航，修改static_map: true
+如果tf有timeout，那么把transform_tolerance: 1.0改大
+局部代价地图代码以odom作为参考系，测出的障碍物位置不易跳变
+57.ROS导航系统 | 恢复行为 | Recovery Behaviors
+<img width="923" height="634" alt="2026-09-28 20-22-00屏幕截图" src="https://github.com/user-attachments/assets/dc1f43cb-b930-4ee1-86b6-cd99052e0440" />
+58，ROS导航系统 | 恢复行为的参数设置 | Recovery Behaviors
+<img width="1203" height="749" alt="2026-09-28 20-37-12屏幕截图" src="https://github.com/user-attachments/assets/f6622af6-a5d5-4aca-90c1-cde0634bba6d" />
+59.ROS导航系统 | 局部规划器 | Local Planner
+机器人的导航路线是由全局规划器产生的，但机器人最后走成什么样，是由局部规划器决定的，局部规划器其实就是机器人的运动控制器
+<param name="base_local_planner" value="wpbh_local_planner/WpbhLocalPlanner" />，人工势场算法
+<img width="1075" height="393" alt="2026-09-28 20-50-40屏幕截图" src="https://github.com/user-attachments/assets/aea9683c-a6df-4983-bce3-ea34c10cec5c" />
+60.ROS导航系统 | DWA规划器 | DWA Planner
+动态窗口方法动态窗口，生成一系列轨迹和方案
+  <img width="1009" height="69" alt="2026-09-28 20-55-29屏幕截图" src="https://github.com/user-attachments/assets/4b3c08f7-7775-4c37-a71e-358155e91af1" />
+rosrun rqt_reconfigure rqt_reconfigure 在线调参
+61.ROS导航系统 | TEB规划器 | TEB Planner
+  时间弹力带
+
+<img width="1045" height="608" alt="2026-09-28 21-17-17屏幕截图" src="https://github.com/user-attachments/assets/b94a67b2-2aef-467f-8a81-a6cd4b0f6f8a" />
+<img width="989" height="101" alt="2026-09-28 21-20-41屏幕截图" src="https://github.com/user-attachments/assets/fc5efdcc-3c4d-464d-8789-413afd4b4674" />
+到目标点会有弧线倒车的现象，倒车就要注意雷达能不能检测到后方，结构上是和阿克曼
+rosrun rqt_reconfigure rqt_reconfigure 在线调参
+62.ROS导航系统 | Action 编程接口
+机器人是自主导航的，不能每次都手动设置导航·的目标点
+使用navfation的导航接口自主导航，推荐使用action接口，action是双向的，
+
