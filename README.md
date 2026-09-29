@@ -80,3 +80,18 @@ rosrun rqt_reconfigure rqt_reconfigure 在线调参
 机器人是自主导航的，不能每次都手动设置导航·的目标点
 使用navfation的导航接口自主导航，推荐使用action接口，action是双向的，
 
+# 20260929
+用action调用move_base的导航功能
+C++编写客户端
+. 和 :: 的区别：
+
+:: 是作用域解析运算符，用来访问 命名空间或类里面的名字，比如 std::cout、ros::init。//:: 的基本含义就是：前面的东西是“范围”，后面的东西是这个范围里的名字
+
+. 是成员访问运算符，用来访问 某个具体对象里面的成员，比如 goal.target_pose、ac.sendGoal(goal)。//. 就是“的”的意思，用来访问一个对象内部的成员。
+65.一款开源的 ROS 航点导航插件
+roslaunch wpr_simulation wpb_map_tool.launch 
+rosrun wpr_simulation demo_map_tool
+66.ROS 航点导航插件的集成和启动
+在move_base的action的接口处，增加一个wp_navi_sever节点，他会按照前面坐标导航的方法，调用move_base的导航功能，只用启动wp_navi_sever节点，就不用自己再实现这个具体的导航功能了，wp_navi_sever节点的导航坐标点来自wp_manager节点，
+wp_manager节点的航点来自上节设置的点  ，加载waypoints.xml节点
+<img width="1070" height="577" alt="2026-09-29 21-33-40屏幕截图" src="https://github.com/user-attachments/assets/d063e4e7-99e0-4374-aa88-f6780dbd42be" />
