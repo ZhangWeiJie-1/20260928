@@ -93,5 +93,24 @@ roslaunch wpr_simulation wpb_map_tool.launch
 rosrun wpr_simulation demo_map_tool
 66.ROS 航点导航插件的集成和启动
 在move_base的action的接口处，增加一个wp_navi_sever节点，他会按照前面坐标导航的方法，调用move_base的导航功能，只用启动wp_navi_sever节点，就不用自己再实现这个具体的导航功能了，wp_navi_sever节点的导航坐标点来自wp_manager节点，
-wp_manager节点的航点来自上节设置的点  ，加载waypoints.xml节点
+wp_manager节点的航点来自上节设置的点  ，加载waypoints.xml节点。在launch里启动他们
 <img width="1070" height="577" alt="2026-09-29 21-33-40屏幕截图" src="https://github.com/user-attachments/assets/d063e4e7-99e0-4374-aa88-f6780dbd42be" />
+wp_navi_sever节点订阅目标航点名称，发布导航执行的结果，所以只用通过demo_map_tool发布目标航点名称，订阅导航执行的结果
+roslaunch wpr_simulation wpb_stage_robocup.launch 
+roslaunch nav_pkg nav.launch
+rosrun wpr_simulation demo_map_tool  
+# （四点自主巡航）67，ROS 航点导航功能的 C++ 实现
+<img width="1024" height="619" alt="2026-09-30 09-42-02屏幕截图" src="https://github.com/user-attachments/assets/310f7e20-9c27-4c7f-94aa-52080b72e865" />
+roslaunch wpr_simulation wpb_stage_robocup.launch
+roslaunch nav_pkg nav.launch
+rosrun nav_pkg wp_node 
+catkin_make
+rosrun nav_pkg wp_node 
+69.
+<img width="1020" height="496" alt="2026-09-30 13-42-32屏幕截图" src="https://github.com/user-attachments/assets/b91b361e-aa63-4e0a-b91a-e4dc2851e94c" />
+70.ROS 相机图像实时获取的 C++ 实现
+catkin_create_pkg cv_pkg roscpp cv_bridge
+roslaunch wpr_simulation wpb_balls.launch
+rosrun cv_pkg cv_image_node
+rosrun wpr_simulation ball_random_move 
+72.ROS 颜色目标跟随的 C++ 实现(加入ros跟踪）
