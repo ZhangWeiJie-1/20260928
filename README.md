@@ -114,3 +114,23 @@ roslaunch wpr_simulation wpb_balls.launch
 rosrun cv_pkg cv_image_node
 rosrun wpr_simulation ball_random_move 
 72.ROS 颜色目标跟随的 C++ 实现(加入ros跟踪）
+
+20261002
+ros launch p3dx_gazebo p3dx_gazebo.launch
+没有动
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py /cmd_vel:=/RosAria/cmd_vel
+j左，l右
+rosrun tf view_frame
+没有odom到base_link,
+# 因为环境里放置了多个source,加载错了环境
+# 我当前项目的tf树中为什么没有odom到base_link
+rosrun rviz rviz1. /cmd_vel：我要怎么运动。
+
+2. 差速控制器：把“怎么运动”转换成左右轮速度。
+
+3. /odom：机器人根据运动反馈估计自己走到了哪里。
+
+4. TF：告诉 ROS 各个坐标系之间的空间关系。
+
+5. odom → base_link：移动机器人最重要的基础 TF 之一。
+
