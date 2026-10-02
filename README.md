@@ -115,7 +115,8 @@ rosrun cv_pkg cv_image_node
 rosrun wpr_simulation ball_random_move 
 72.ROS 颜色目标跟随的 C++ 实现(加入ros跟踪）
 
-20261002
+# 20261002仿真+实物
+## 仿真
 ros launch p3dx_gazebo p3dx_gazebo.launch
 没有动
 rosrun teleop_twist_keyboard teleop_twist_keyboard.py /cmd_vel:=/RosAria/cmd_vel
@@ -133,4 +134,24 @@ rosrun rviz rviz1. /cmd_vel：我要怎么运动。
 4. TF：告诉 ROS 各个坐标系之间的空间关系。
 
 5. odom → base_link：移动机器人最重要的基础 TF 之一。
+保存世界
+0. 保存你的世界:Gazebo 菜单 File → Save World As,存到:
+~/p3dx_learning_ws/src/p3dx/p3dx_gazebo/worlds/my_arena.world
+(没有 worlds 目录就先建一个)。以后启动仿真都加载这个世界,障碍物就固定下来了。
+建图
+roslaunch p3dx_gazebo p3dx_slam.launch
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py cmd_vel:=/RosAria/cmd_vel
+- 最后回环:开回起点附近绕一下,让算法修正累计误差
+- 地图出现"重影"(同一堵墙两个影子)就是转太快或粒子不够的表现
+保存地图(地图满意后):
+mkdir -p ~/p3dx_learning_ws/src/p3dx/p3dx_gazebo/maps
+cd ~/p3dx_learning_ws/src/p3dx/p3dx_gazebo/maps
+rosrun map_server map_saver -f my_arena
 
+roslaunch p3dx_gazebo p3dx_nav.launch
+rviz
+RViz Add:Map(话题 /move_base/global_costmap/costmap)、Map(话题 /move_base/local_costmap/costmap)、TF、LaserScan。
+
+## 实物
+roslaunch p3dx_gazebo p3dx_real_nav.launch
+rviz
