@@ -193,4 +193,5 @@ Eigen是纯用文件搭建的库
 考研时的，爽了
 第三讲视频讲解还没看完，四元数视频还没看
 
-![Uploading 2026-10-03 21-17-43屏幕截图.png…]()
+<img width="1920" height="2160" alt="2026-10-03 14-43-54 的屏幕截图" src="https://github.com/user-attachments/assets/3dd8212c-17ae-49de-8f0c-44f64bcc7f32" />
+
