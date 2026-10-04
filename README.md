@@ -154,8 +154,7 @@ RViz Add:Map(话题 /move_base/global_costmap/costmap)、Map(话题 /move_base/l
 
 ## 实物
 roslaunch p3dx_gazebo p3dx_real_nav.launch
-rviz
-
+rviz -d ~/p3dx_learning_ws/src/p3dx/p3dx_gazebo/launch/p3dx_nav.rviz
 20261003
 # 视觉slam14讲
 ch1
@@ -182,9 +181,23 @@ ch3
 旋转变换，欧式变换
 旋转矩阵与变换矩阵
 <img width="1186" height="712" alt="2026-10-03 19-05-09屏幕截图" src="https://github.com/user-attachments/assets/3d637ce4-d9b9-4417-9641-19e9aefb91dd" />
+旋转向量
+<img width="546" height="366" alt="image" src="https://github.com/user-attachments/assets/782ae76e-e05f-4102-8c51-98e56c12264f" />
 
+欧拉角与转动没有任何关系，其描述的是变换，没有旋转过程
 欧拉角不适合增量式调整（因为是矩阵变换 ），绕定轴不会出现万象锁，绕动轴会出现万象🔓
-四元数真难理解
+（动态欧拉角下）顺序在前的轴旋转会带着顺序在后的轴旋转，顺序在后的轴旋转会带着顺序在前的轴旋转（方便解释
+
+
+变换是从初始状态开始的，不是从y=90度开始的，在11度往上增加，因为变换顺序定了下来 ，阿啊啊啊啊奥
+
+
+
+
+
+
+把最不容易旋转90度的轴定为第二个变的，尽量避免万象锁。。。。。[无伤理解欧拉角中的“万向死锁”现象](https://www.bilibili.com/video/BV1Nr4y1j7kn/?spm_id_from=333.337.search-card.all.click&vd_source=0da0b7e545e1a65e82836ac4eff73077)
+四元数真难理解（可以彻底解决万象锁）
 左世右体，绕世界系旋转用左乘，绕本体轴旋转用右乘
 
 实操
@@ -193,5 +206,20 @@ Eigen是纯用文件搭建的库
 考研时的，爽了
 第三讲视频讲解还没看完，四元数视频还没看
 
-<img width="1920" height="2160" alt="2026-10-03 14-43-54 的屏幕截图" src="https://github.com/user-attachments/assets/3dd8212c-17ae-49de-8f0c-44f64bcc7f32" />
+<img width="1197" height="478" alt="2026-10-03 21-17-43屏幕截图" src="https://github.com/user-attachments/assets/44303920-52de-4963-99bd-707c6bb3e802" />
 
+
+ch4
+ch3；介绍了旋转的表示，但是在slam中，除了表示，还要对他们进行估值和优化。
+因为在slam中位姿是未知的，而我们需要解决“什么样的相机位置最符合当前的观测数据”，变成了优化问题，求最优的R和t，使得误差最小化
+旋转矩阵自身带有约束，通过李群李代数转为无约梀问题
+<img width="1044" height="399" alt="2026-10-04 14-52-10屏幕截图" src="https://github.com/user-attachments/assets/a25f3a19-bf9c-4279-930f-baa3952e0392" />
+<img width="620" height="411" alt="2026-10-04 14-55-17屏幕截图" src="https://github.com/user-attachments/assets/5787701b-a715-4222-ad7c-7ba06aecaa9e" />
+
+李代数描述李群的局部性质
+<img width="934" height="384" alt="2026-10-04 15-17-15屏幕截图" src="https://github.com/user-attachments/assets/3efed8f8-5e34-4f79-bf4e-ad448a855c0f" />
+
+何意为，make不了
+只能cmake ..
+make后要再
+./useSophus
