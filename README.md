@@ -155,3 +155,42 @@ RViz Add:Map(话题 /move_base/global_costmap/costmap)、Map(话题 /move_base/l
 ## 实物
 roslaunch p3dx_gazebo p3dx_real_nav.launch
 rviz
+
+20261003
+# 视觉slam14讲
+ch1
+其它传感器定位导航依赖外界，另一类不依赖
+单双深
+ch2
+<img width="522" height="199" alt="image" src="https://github.com/user-attachments/assets/500440d1-a481-4f2f-a174-45e688a77f92" />
+视觉里程计(Visual Odometry,VO): 视觉里程计的任务是估算相邻图像间相机的运动,以及局部地图的样子.VO又称为前端(Front End).
+把相邻时刻的运动串起来，就构成了机器人的运动轨迹，以解决定位问题
+根据每个时刻相机位置，计算出各像素对应的空间点位置，得到地图
+视觉里程计不可避免地会出现累积漂移(Accumulating Drift)问题，导致建图倾斜，需要回环检测和后端优化
+
+后端优化 (Optimization): 后端接受不同时刻视觉里程计测量的相机位姿,以及回环检测的信息,对它们进行优化,得到全局一致的轨迹和地图.由于接在VO之后,又称为后端(Back End).
+在视觉 SLAM中,前端和计算机视觉研究领域更为相关,比如图像的特征提取与匹配等,后端则主要是滤波与非线性优化算法.
+
+回环检测 (Loop Closing): 回环检测通过图片之间的相似性判断机器人是否到达过先前的位置.如果检测到回环,它会把信息提供给后端进行处理
+定位时是稀疏地图，导航时是稠密地图
+<img width="809" height="848" alt="2026-10-03 11-43-41屏幕截图" src="https://github.com/user-attachments/assets/1da390f9-3848-4169-b55b-088792be132d" />
+
+整理命令
+
+ch3
+<img width="901" height="322" alt="2026-10-03 16-53-07屏幕截图" src="https://github.com/user-attachments/assets/96d22e89-efe3-49f1-9a69-d4e9fd249fef" />
+旋转变换，欧式变换
+旋转矩阵与变换矩阵
+<img width="1186" height="712" alt="2026-10-03 19-05-09屏幕截图" src="https://github.com/user-attachments/assets/3d637ce4-d9b9-4417-9641-19e9aefb91dd" />
+
+欧拉角不适合增量式调整（因为是矩阵变换 ），绕定轴不会出现万象锁，绕动轴会出现万象🔓
+四元数真难理解
+左世右体，绕世界系旋转用左乘，绕本体轴旋转用右乘
+
+实操
+Eigen是纯用文件搭建的库
+
+考研时的，爽了
+第三讲视频讲解还没看完，四元数视频还没看
+
+![Uploading 2026-10-03 21-17-43屏幕截图.png…]()
