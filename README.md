@@ -208,7 +208,7 @@ Eigen是纯用文件搭建的库
 
 <img width="1197" height="478" alt="2026-10-03 21-17-43屏幕截图" src="https://github.com/user-attachments/assets/44303920-52de-4963-99bd-707c6bb3e802" />
 
-
+20261004
 ch4
 ch3；介绍了旋转的表示，但是在slam中，除了表示，还要对他们进行估值和优化。
 因为在slam中位姿是未知的，而我们需要解决“什么样的相机位置最符合当前的观测数据”，变成了优化问题，求最优的R和t，使得误差最小化
@@ -221,5 +221,11 @@ ch3；介绍了旋转的表示，但是在slam中，除了表示，还要对他�
 
 何意为，make不了
 只能cmake ..
-make后要再
+make后要再,因为make版本冲突
 ./useSophus
+sudo updatedb读取整个文件系统，并写入数据库文件
+locate sophus | grep cmake
+target_link_libraries(useSophus Sophus::Sophus)
+#既不用写头文件，也不用写库文件，找Sophus有没有target
+#gedit /usr/local/share/sophus/cmake/SophusTargets.cmake
+
