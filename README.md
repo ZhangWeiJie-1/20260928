@@ -229,3 +229,27 @@ target_link_libraries(useSophus Sophus::Sophus)
 #既不用写头文件，也不用写库文件，找Sophus有没有target
 #gedit /usr/local/share/sophus/cmake/SophusTargets.cmake
 
+
+20261005
+<img width="1274" height="693" alt="2026-10-05 20-01-39屏幕截图" src="https://github.com/user-attachments/assets/dd70c976-5dd1-41cf-a462-74906108110c" />
+<img width="1582" height="906" alt="2026-10-05 16-15-00屏幕截图" src="https://github.com/user-attachments/assets/518dd42b-7ddf-41b5-b630-48d6d0ab219e" />
+<img width="893" height="377" alt="2026-10-05 11-35-42屏幕截图" src="https://github.com/user-attachments/assets/24db5635-1d3e-4ef3-8d23-79800f8f840c" />
+
+
+
+生不成可执行文件stereoVision
+./stereoVision
+生不成可执行文件joinMap
+cd ~/slambook2-master/ch5/rgbd
+ env -u LD_LIBRARY_PATH ../build/rgbd/joinMap
+
+ch6
+ 20261006
+ x是约束对象，f(x)是目标函数
+ <img width="809" height="657" alt="2026-10-06 10-28-35屏幕截图" src="https://github.com/user-attachments/assets/64a09fb6-dd04-4bcd-81bd-433c6fa874c0" />
+<img width="841" height="706" alt="2026-10-06 10-38-22屏幕截图" src="https://github.com/user-attachments/assets/18bfac9c-b397-4be7-9b01-09791b1c601b" />
+
+
+## 方程的矩阵可以由变换矩阵T来描述，然后用李代数进行优化，李代数不是优化本身，而是为了让优化能在位姿空间上顺利进行而引入的局部参数化工具，有约束到无约束是李代数做的。观测方程由相机成像模型给出，其中内参是随相机固定的，外参则是相机的位姿。
+
+
