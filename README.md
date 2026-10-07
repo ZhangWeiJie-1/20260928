@@ -262,3 +262,6 @@ cmake ..
 make -j4
 sudo make install
 
+有sophus::sophus,没g2o::g2o
+
+前六讲第一遍结束
