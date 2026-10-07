@@ -252,4 +252,13 @@ ch6
 
 ## 方程的矩阵可以由变换矩阵T来描述，然后用李代数进行优化，李代数不是优化本身，而是为了让优化能在位姿空间上顺利进行而引入的局部参数化工具，有约束到无约束是李代数做的。观测方程由相机成像模型给出，其中内参是随相机固定的，外参则是相机的位姿。
 
+20261007
+关于slam14讲ch6编程部分的cere,不用管
+g2o的安装包已经下载，
+解压后
+cd ~/slambook2-master/3rdparty/g2o/g2o-9b41a4ea5ade8e1250b9c1b279f3a9c098811b5a
+mkdir -p build && cd build
+cmake ..
+make -j4
+sudo make install
 
