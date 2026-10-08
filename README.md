@@ -265,3 +265,22 @@ sudo make install
 有sophus::sophus,没g2o::g2o
 
 前六讲第一遍结束
+
+
+第0阶段：先把 C++ 补到“能看懂机器人代码”
+不用重新学一遍大学 C++。
+我们只学：
+C++机器人必备基础
+│
+├── 变量/函数
+├── 指针/引用
+├── struct/class
+├── vector
+├── map
+├── 构造函数
+├── namespace
+├── Eigen
+└── 智能指针
+
+
+
